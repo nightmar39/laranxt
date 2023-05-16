@@ -26,4 +26,5 @@ export interface User {
   avatar: string
 }
 
+
 export type Users = Array<User>

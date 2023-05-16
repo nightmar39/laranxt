@@ -12,6 +12,7 @@ module.exports = {
     },
   },
   plugins: [
+
   ],
   theme: {
     extend: {

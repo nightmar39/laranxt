@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: nightmar39/resume_backend:v2.3
+        ports:
+          - containerPort: 8000
+        volumeMounts:
+          - name: laravel-config
+            mountPath: /var/www/html/.env
+            subPath: .env
+      volumes:
+        - name: laravel-config
+          configMap:
+            name: laravel-config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000

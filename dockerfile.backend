@@ -1,0 +1,51 @@
+FROM php:8.1-fpm
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+        build-essential \
+        libpng-dev \
+        libonig-dev\
+        libxml2-dev\
+        libzip-dev\
+        libjpeg62-turbo-dev \
+        libfreetype6-dev \
+        locales \
+        zip \
+        jpegoptim optipng pngquant gifsicle \
+        vim \
+        unzip \
+        git \
+        curl
+
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install extensions
+RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
+RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
+RUN docker-php-ext-install gd
+
+# Get latest Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Copy project files to working directory
+COPY . .
+
+# Install composer dependencies
+RUN composer install --no-interaction
+
+# Copy environment file
+COPY .env.example .env
+
+# Generate application key
+RUN php artisan key:generate
+
+# Set the container to listen on port 9000
+EXPOSE 8000
+
+# Start the Laravel application
+CMD php artisan serve --host=0.0.0.0 --port=8000
+

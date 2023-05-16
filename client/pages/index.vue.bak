@@ -19,7 +19,7 @@
         <dt class="text-sm font-medium leading-6 text-gray-900">Email address</dt>
             <div class="mt-2 flex items-center gap-x-3">
             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{resumes.Candidate.email}}</dd>
-            <nuxt-link to="/editemail"class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Update</nuxt-link>
+            <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Update</button>
           </div>
 
       </div>
@@ -28,29 +28,23 @@
         <div class="flex flex-col">
 
           <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.</dd>
-          <nuxt-link to="/editabout" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Update</nuxt-link>
+          <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Update</button>
       </div>
       </div>
-
-
-      <div>
-        <h3>About:</h3>
-        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-          <dt class="text-sm font-medium leading-6 text-gray-900">Skills</dt>
-          <dd class="mt-2 text-sm text-gray-900 sm:col-span-1 sm:mt-0">
-            <ul role="list" class="divide-y divide-gray-100 rounded-md border border-gray-200" v-for="skill in resumes.Skills">
-              <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
-                <div class="flex w-0 flex-1 items-center justify-end">
-                  <div class="ml-4 flex min-w-0 flex-1 gap-2">
-                    <span class="truncate font-medium">{{ skill }}</span>
-                    <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Delete</button>
-                  </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Skills</dt>
+        <dd class="mt-2 text-sm text-gray-900 sm:col-span-1 sm:mt-0">
+          <ul role="list" class="divide-y divide-gray-100 rounded-md border border-gray-200" v-for="skill in resumes.Skills">
+            <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+              <div class="flex w-0 flex-1 items-center justify-end">
+                <div class="ml-4 flex min-w-0 flex-1 gap-2">
+                  <span class="truncate font-medium">{{ skill }}</span>
+                  <button type="button" class="rounded-md  bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Delete</button>
                 </div>
-              </li>
-            </ul>
-            <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 mt-4">Add</button>
-          </dd>
-        </div>
+              </div>
+            </li>
+          </ul>
+        </dd>
       </div>
       
 <div class="mt-6 border-t border-gray-100">
@@ -63,7 +57,7 @@
           <div> {{ exp.job_title }} {{ exp.start_date }} - {{ exp.end_date }}</div>
           <br>
           <div>{{ exp.description }}</div>
-          <nuxt-link to="/editexperience" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Update</nuxt-link>
+          <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Update</button>
 
         </dd>
       </div>

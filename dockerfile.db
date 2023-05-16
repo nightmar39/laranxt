@@ -1,0 +1,7 @@
+FROM mysql:8
+
+# Set the container to listen on port 3306
+EXPOSE 3306
+
+# Create a database
+ENV MYSQL_DATABASE=resumeBuilder

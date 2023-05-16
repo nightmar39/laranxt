@@ -66,4 +66,7 @@ class Controller extends BaseController
     {
         return $this->render(['forced_error' => $forced_error]);
     }
+    public function resume(){
+        return "Hello World";
+    }
 }

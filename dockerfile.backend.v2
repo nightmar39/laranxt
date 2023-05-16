@@ -1,0 +1,22 @@
+FROM php:latest
+
+# Install dependencies
+RUN apt-get update && apt-get install -y 
+
+RUN docker-php-ext-install pdo_mysql
+
+# Get latest Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Copy project files to working directory
+COPY . .
+
+RUN cp .env.docker .env 
+
+RUN composer install --no-interaction
+
+EXPOSE 8000
+CMD [ "php", "artisan", "serve", "--host=0.0.0.0", "--port=8000" ]
