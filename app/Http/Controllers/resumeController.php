@@ -35,7 +35,7 @@ class resumeController extends Controller
 
         $candidate = [
         'Candidate' => Resume::find(1),
-        'Skills' => skills::where('resumes_id', '1')->get()->pluck('name')->toArray(),
+        'Skills' => skills::where('resumes_id', '1')->get()->toArray(),
         'Experience' => experience::where('resumes_id', '1')->get()->toArray(),
         //'Experience' => experience::all()
         ];
@@ -44,7 +44,7 @@ class resumeController extends Controller
     }
 
     public function EditCandidateEmail(Request $request){
-        $resume = Resume::find(1);
+        $resume = Resume::find($request->id);
         $resume-> email = request->email;
         $resume->save(); 
     }
@@ -63,10 +63,10 @@ class resumeController extends Controller
         $skill = skills::find($id);
         if ($skill) {
             $skill->delete();
-            //return response()->json(['message' => 'Skill deleted successfully']);
-        } //else {
-            //return response()->json(['message' => 'Skill not found'], 404);
-        //}
+            return response()->json(['message' => 'Skill deleted successfully']);
+        } else {
+            return response()->json(['message' => 'Skill with ID ' . $id . ' not found'], 404);
+        }
     }
 
 
@@ -76,21 +76,23 @@ class resumeController extends Controller
 
     }
 
-    public function AddExperience(Requst $request){
+    public function AddExperience(Request $request){
         $newExperience = new experience; 
         $newExperience->company_name = $request->company_name; 
         $newExperience->job_title = $request->job_title;
         $newExperience->start_date = $request->start_date; 
+        $newExperience->end_date = $request->end_date; 
         $newExperience->description = $request->description; 
         $newExperience->resumes_id = 1;
         $newExperience->save();
     }   
 
-    public function EditExperience(Requst $request){
+    public function EditExperience(Request $request){
         $experience = experience::find($request->id);
         $experience->company_name = $request->company_name; 
         $experience->job_title = $request->job_title;
-        $experience->start_date = $request->start_date; 
+        $experience->start_date = $request->start_date;
+        $experience->end_date = $request->end_date; 
         $experience->description = $request->description; 
         $experience->resumes_id = 1;  
         $experience->save(); 

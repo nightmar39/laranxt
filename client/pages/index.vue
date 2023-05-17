@@ -31,10 +31,8 @@
           <nuxt-link to="/editabout" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Update</nuxt-link>
       </div>
       </div>
-
-
+      
       <div>
-        <h3>About:</h3>
         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
           <dt class="text-sm font-medium leading-6 text-gray-900">Skills</dt>
           <dd class="mt-2 text-sm text-gray-900 sm:col-span-1 sm:mt-0">
@@ -42,8 +40,8 @@
               <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
                 <div class="flex w-0 flex-1 items-center justify-end">
                   <div class="ml-4 flex min-w-0 flex-1 gap-2">
-                    <span class="truncate font-medium">{{ skill }}</span>
-                    <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Delete</button>
+                    <span class="truncate font-medium">{{ skill.name }}</span>
+                    <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" @click="deleteExperience(skill.id)">Delete</button>
                   </div>
                 </div>
               </li>
@@ -71,15 +69,9 @@
   </dl>
 </div>
 
-
-
-
-
     </dl>
   </div>
 
-
-    
 </div>
 </template>
 
@@ -95,10 +87,35 @@ export default Vue.extend ({
     }
   },
 
-async fetch() {
-  const response = await this.$axios.$get('/anthony')
-  this.resumes = response.data
-  
+  async fetch() {
+    const response = await this.$axios.$get('/anthony')
+    this.resumes = response.data
+  },
+
+methods: {
+  deleteExperience(skillId: string) {
+
+    const url = `/deleteskill/${skillId}`
+
+    console.log(url)
+
+    const response = this.$axios.$delete(url)
+      .then(response => {
+        // Handle the successful deletion, such as updating the UI
+        console.log(`Skill with ID ${skillId} deleted successfully`);
+        this.$toast.show({
+          type: 'success',
+          title: 'Success',
+          message: 'Successfully Deleted Skill!',
+        })
+        location.reload(); 
+      })
+      .catch(error => {
+        // Handle the error case, such as displaying an error message
+        console.error(`Error deleting skill with ID ${skillId}`);
+      });
+
+  },
 }
  
 })

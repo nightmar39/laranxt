@@ -23,10 +23,10 @@
     </div>
     <div>
       <label for="description">Description:</label>
-      <textarea id="description" v-model="experience.description"></textarea>
+      <textarea id="description" type="text" v-model="experience.description"></textarea>
       </br>
     </div>
-    <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" @click="updateExperience">Update</button>
+    <button type="button" @click="updateExperience" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Update</button>
   </div>
 </template>
 
@@ -39,15 +39,30 @@ export default {
         jobTitle: '',
         startDate: '',
         endDate: '',
-        description: ''
+        description: '', 
+        id: 1, 
       }
     };
   },
   methods: {
-    updateExperience() {
-      // Perform the update operation, e.g., make an API request
-      // using the data from 'experience' object
-      // Handle the response or show a success message
+    async updateExperience() {
+       const data = {
+        company_name: this.experience.companyName,
+        job_title: this.experience.jobTitle,
+        start_date: this.experience.startDate,
+        end_date: this.experience.endDate,
+        description: this.experience.description,
+        id: this.experience.id, 
+       };
+
+    const response = await this.$axios.post('/editexperience' , data)
+        .then(response => {
+            console.log("Successfully updated Experience")
+        })
+        .catch(error => {
+            console.log("Could not update experience")
+        });
+
     }
   }
 }

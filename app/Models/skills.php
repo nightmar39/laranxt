@@ -10,7 +10,6 @@ class skills extends Model
     use HasFactory;
 
     protected $hidden = [
-        'id',
         'resumes_id', 
     ];
 }
