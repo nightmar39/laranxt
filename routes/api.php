@@ -33,5 +33,5 @@ Route::delete('/deleteskill/{id}', [resumeController::class, 'DeleteSkill'])->na
 
 Route::post('/addexperience', [resumeController::class, 'AddExperience'])->name('add experience route');
 Route::post('/editexperience', [resumeController::class, 'EditExperience'])->name('edit experience route');
-Route::delete('/deleteexperince/{id}', [resumeController::class, 'DeleteExperience'])->name('delete experience route');
+Route::delete('/deleteexperience/{id}', [resumeController::class, 'DeleteExperience'])->name('delete experience route');
 

@@ -68,7 +68,7 @@
           <br>
           <div>{{ exp.description }}</div>
           <nuxt-link to="/editexperience" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Update</nuxt-link>
-          <nuxt-link to="/editexperience" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Delete</nuxt-link>
+          <button type="button"  @click="deleteExperience(exp.id)" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Delete</button>
         </dd>
       </div>
     </template>
@@ -120,10 +120,29 @@ methods: {
         location.reload(); 
       })
       .catch(error => {
-        // Handle the error case, such as displaying an error message
         console.error(`Error deleting skill with ID ${skillId}`);
       });
 
+  },
+  deleteExperience(expID: string) {
+
+    const url = `/deleteexperience/${expID}`
+
+    console.log(url)
+    const response = this.$axios.$delete(url)
+      .then(response => {
+        // Handle the successful deletion, such as updating the UI
+        console.log(`Skill with ID ${expID} deleted successfully`);
+        this.$toast.show({
+          type: 'success',
+          title: 'Success',
+          message: 'Successfully Deleted Skill!',
+        })
+        location.reload(); 
+      })
+      .catch(error => {
+        console.error(`Error deleting Experience with ID ${expID}`);
+      });
   },
 }
  
