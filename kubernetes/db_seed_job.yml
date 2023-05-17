@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: seed-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: php
+        image: nightmar39/resume_backend:v3.0
+        command: ["php", "artisan", "db:seed"]
+        workingDir: /var/www/html
+        volumeMounts:
+          - name: laravel-config
+            mountPath: /var/www/html/.env
+            subPath: .env
+      volumes:
+        - name: laravel-config
+          configMap:
+            name: laravel-config
+      restartPolicy: Never
+  backoffLimit: 4

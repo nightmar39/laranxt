@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: nightmar39/resume_frontend:dev-v2.3
+        image: nightmar39/resume_frontend:dev-v3.0
         env: 
           - name: API_URL
             value: "http://backend-service"

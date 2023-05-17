@@ -58,6 +58,7 @@ export default {
     const response = await this.$axios.post('/editexperience' , data)
         .then(response => {
             console.log("Successfully updated Experience")
+            this.$router.push("/")
         })
         .catch(error => {
             console.log("Could not update experience")

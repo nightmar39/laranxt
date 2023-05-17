@@ -1,6 +1,7 @@
 resources: 
 - resume_frontend.yml
 - resume_backend.yml
+- db.yml
 
 configMapGenerator: 
 - name: laravel-config

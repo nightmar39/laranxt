@@ -7,8 +7,8 @@ spec:
     spec:
       containers:
       - name: php
-        image: nightmar39/resume_backend:v2.1
-        command: ["php artisan migrate"]
+        image: nightmar39/resume_backend:v3.0
+        command: ["php", "artisan", "migrate"]
         workingDir: /var/www/html
         volumeMounts:
           - name: laravel-config

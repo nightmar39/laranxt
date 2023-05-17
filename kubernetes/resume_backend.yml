@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: nightmar39/resume_backend:v2.3
+        image: nightmar39/resume_backend:v3.0
         ports:
           - containerPort: 8000
         volumeMounts:
