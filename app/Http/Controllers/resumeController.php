@@ -45,13 +45,19 @@ class resumeController extends Controller
 
     public function EditCandidateEmail(Request $request){
         $resume = Resume::find($request->id);
-        $resume-> email = request->email;
-        $resume->save(); 
+        if ($resume) {
+            $resume->email = $request->email;
+            $resume->save(); 
+            return response()->json(['message' => 'Email updated successfully']);
+        } else {
+            return response()->json(['message' => 'Did not find this candidate' . $request->id . ' '], 404);
+        }
+        
     }
 
     public function AddSkill(Request $request){
 
-        $newSkill = new skills; 
+        $newSkill = new skills;         
         $newSkill->name = $request->skill;
         $newSkill->resumes_id = 1;
         $newSkill->save();
@@ -103,10 +109,10 @@ class resumeController extends Controller
         $experience = experience::find($id);
         if ($experience) {
             $experience->delete();
-            //return response()->json(['message' => 'Skill deleted successfully']);
-        } //else {
-            //return response()->json(['message' => 'Skill not found'], 404);
-        //}
+            return response()->json(['message' => 'Experience block deleted successfully']);
+        } else {
+            return response()->json(['message' => 'Experience block not found'], 404);
+        }
     }
 
 }

@@ -13,7 +13,7 @@
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Application for</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">Backend Developer</dd>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">Kubernetes Devops Engineer</dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Email address</dt>
@@ -27,7 +27,11 @@
         <dt class="text-sm font-medium leading-6 text-gray-900">About</dt>
         <div class="flex flex-col">
 
-          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.</dd>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+          I am Anthony Rozario, a highly skilled and experienced DevOps engineer with a strong background in creating, maintaining, and scaling developer infrastructure, I have demonstrated my ability to optimize processes and streamline operations. My achievements include successfully migrating data, optimizing build processes, and implementing automated container scanning. 
+          As a Solutions Architect at Codefresh, I have collaborated with customers to drive successful adoption of solutions and managed complex demo environments. 
+          With expertise in AWS, Docker, Kubernetes, and GitOps tools, I am well-prepared to contribute to Rimsys as a Senior DevOps Engineer, helping to streamline regulatory activities and accelerate product delivery for medical technology companies.
+          </dd>
           <nuxt-link to="/editabout" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Update</nuxt-link>
       </div>
       </div>
@@ -41,12 +45,14 @@
                 <div class="flex w-0 flex-1 items-center justify-end">
                   <div class="ml-4 flex min-w-0 flex-1 gap-2">
                     <span class="truncate font-medium">{{ skill.name }}</span>
-                    <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" @click="deleteExperience(skill.id)">Delete</button>
+                    <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" @click="deleteSkill(skill.id)">Delete</button>
                   </div>
                 </div>
               </li>
             </ul>
-            <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 mt-4">Add</button>
+              <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                  <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 mt-4 sm:col-start-2">Add Skill</button>
+              </div>
           </dd>
         </div>
       </div>
@@ -62,10 +68,13 @@
           <br>
           <div>{{ exp.description }}</div>
           <nuxt-link to="/editexperience" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Update</nuxt-link>
-
+          <nuxt-link to="/editexperience" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Delete</nuxt-link>
         </dd>
       </div>
     </template>
+    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+      <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 mt-4 sm:col-start-2">Add Experience</button>
+    </div>
   </dl>
 </div>
 
@@ -93,7 +102,7 @@ export default Vue.extend ({
   },
 
 methods: {
-  deleteExperience(skillId: string) {
+  deleteSkill(skillId: string) {
 
     const url = `/deleteskill/${skillId}`
 
