@@ -51,7 +51,7 @@
               </li>
             </ul>
               <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                  <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 mt-4 sm:col-start-2">Add Skill</button>
+                  <nuxt-link to="/addskill" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 mt-4 sm:col-start-2">Add Skill</nuxt-link>
               </div>
           </dd>
         </div>
@@ -98,7 +98,12 @@ export default Vue.extend ({
 
   async fetch() {
     const response = await this.$axios.$get('/anthony')
-    this.resumes = response.data
+      .then(response => {
+        this.resumes = response.data
+      })
+      .then(error => {
+        console.error("Could not fetch resume data")
+      })
   },
 
 methods: {
@@ -127,7 +132,6 @@ methods: {
   deleteExperience(expID: string) {
 
     const url = `/deleteexperience/${expID}`
-
     console.log(url)
     const response = this.$axios.$delete(url)
       .then(response => {
